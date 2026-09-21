@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#006989"/>
+  <text x="600" y="280" font-family="system-ui, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">Town Taskers</text>
+  <text x="600" y="340" font-family="system-ui, sans-serif" font-size="24" fill="white" text-anchor="middle">Professional Cleaning & Facility Services</text>
+  <text x="600" y="400" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)" text-anchor="middle">Birgunj, Nepal</text>
+  <circle cx="600" cy="500" r="40" fill="white" opacity="0.2"/>
+  <path d="M600 485c-8.284 0-15 6.716-15 15s6.716 15 15 15 15-6.716 15-15-6.716-15-15-15z" fill="#006989"/>
+</svg>

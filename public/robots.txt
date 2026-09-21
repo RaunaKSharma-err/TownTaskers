@@ -1,0 +1,16 @@
+# Robots.txt for Town Taskers Sewa & Solutions Pvt. Ltd.
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.towntaskers.com/sitemap.xml
+
+# Disallow private/admin routes (none currently, but good practice)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Crawl-delay (optional, be respectful)
+Crawl-delay: 10
