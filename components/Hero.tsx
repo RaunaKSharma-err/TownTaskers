@@ -23,7 +23,7 @@ export function Hero() {
         <div className="float-bubble absolute left-[5%] bottom-[10%] h-16 w-16 rounded-full bg-accent-50" style={{ animationDelay: '2s' }} />
       </div>
 
-      <div className="container-mx container-px relative py-16 md:py-24 lg:py-28">
+      <div className="container-mx container-px relative py-6 md:py-24 lg:py-8">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           {/* Left content */}
           <div>
