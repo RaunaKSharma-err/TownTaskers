@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
         <div className="container-mx container-px">
           <div className="mx-auto max-w-3xl space-y-6 text-sm leading-relaxed text-muted-foreground">
             <p className="text-base text-foreground">
-              This privacy policy describes how TownTaskers Sewa &amp; Solution Pvt. Ltd. handles information collected through this website.
+              This privacy policy describes how Town Taskers Sewa &amp; Solutions Pvt. Ltd. handles information collected through this website.
             </p>
 
             <div>
@@ -65,10 +65,6 @@ export default function PrivacyPolicyPage() {
                 If you have questions about this privacy policy, please contact us through our contact page.
               </p>
             </div>
-
-            <p className="text-xs text-muted-foreground/60">
-              This privacy policy is a placeholder. Replace with your full legal privacy policy before launching.
-            </p>
           </div>
         </div>
       </section>

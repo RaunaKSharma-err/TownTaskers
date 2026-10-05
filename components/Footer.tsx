@@ -11,7 +11,7 @@ const socialLinks = [
 ].filter((s) => s.href);
 
 export function Footer() {
-  const year = new Date().getFullYear();
+  const year = 2024;
 
   return (
     <footer className="border-t border-border bg-secondary/40">

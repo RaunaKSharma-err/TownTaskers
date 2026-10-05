@@ -19,6 +19,9 @@ import {
   Grid3x3,
   Sofa,
   Settings,
+  Utensils,
+  Square,
+  Droplets,
 } from 'lucide-react';
 
 const iconMap: Record<string, typeof Home> = {
@@ -29,6 +32,9 @@ const iconMap: Record<string, typeof Home> = {
   Grid3x3,
   Sofa,
   Settings,
+  Utensils,
+  Square,
+  Droplets,
 };
 
 export function ServiceCard({ slug, name, description, image, imageAlt, iconName }: ServiceCardProps) {

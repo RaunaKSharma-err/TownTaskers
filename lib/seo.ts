@@ -18,8 +18,11 @@ interface SeoOptions {
   image?: string;
 }
 
+const defaultOgImage = `${siteConfig.url}/og-image.png`;
+
 export function generateMetadata({ title, description, path, keywords, image }: SeoOptions): Metadata {
   const url = `${siteConfig.url}${path}`;
+  const ogImage = image || defaultOgImage;
   return {
     title,
     description,
@@ -34,13 +37,13 @@ export function generateMetadata({ title, description, path, keywords, image }: 
       siteName: company.companyName,
       type: 'website',
       locale: 'en_US',
-      ...(image ? { images: [{ url: image, width: 1200, height: 630, alt: title }] } : {}),
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${title} | ${company.companyName}`,
       description,
-      ...(image ? { images: [image] } : {}),
+      images: [ogImage],
     },
     robots: {
       index: true,
@@ -60,19 +63,13 @@ export function generateLocalBusinessJsonLd() {
     url: siteConfig.url,
     logo: `${company.website}/icon-512.png`,
     email: company.email,
-    telephone: `+${company.whatsappNumber.replace('977', '')}`,
+    telephone: `+${company.whatsappNumber}`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: company.address.line1,
       addressLocality: 'Birgunj',
       addressRegion: 'Parsa',
-      postalCode: '44300',
       addressCountry: 'NP',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 27.0414,
-      longitude: 84.8718,
     },
     areaServed: [
       {
@@ -88,29 +85,7 @@ export function generateLocalBusinessJsonLd() {
         name: 'Nepal',
       },
     ],
-    priceRange: '$$',
-    currenciesAccepted: 'NPR',
-    paymentAccepted: 'Cash, Bank Transfer, UPI',
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '18:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
-        opens: '09:00',
-        closes: '17:00',
-      },
-    ],
     sameAs: [],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Cleaning Services',
-      itemListElement: [],
-    },
   };
 }
 
@@ -126,9 +101,8 @@ export function generateOrganizationJsonLd() {
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: `+${company.whatsappNumber.replace('977', '')}`,
+      telephone: `+${company.whatsappNumber}`,
       contactType: 'customer service',
-      availableLanguage: ['English', 'Nepali', 'Hindi'],
       areaServed: 'NP',
     },
   };
@@ -156,8 +130,7 @@ export function generateServiceJsonLd(service: ServiceData) {
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl,
-      servicePhone: `+${company.whatsappNumber.replace('977', '')}`,
-      serviceSmsNumber: `+${company.whatsappNumber.replace('977', '')}`,
+      servicePhone: `+${company.whatsappNumber}`,
     },
   };
 }
@@ -201,14 +174,6 @@ export function generateWebSiteJsonLd() {
     description: siteConfig.description,
     publisher: {
       '@id': `${company.website}#organization`,
-    },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${company.website}/search?q={search_term_string}`,
-      },
-      queryInput: 'required name=search_term_string',
     },
   };
 }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Send, Check } from 'lucide-react';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
+import { company } from '@/lib/config';
 
 export function ContactForm() {
   const [form, setForm] = useState({
@@ -41,7 +42,7 @@ export function ContactForm() {
 
     // Compose WhatsApp message and open it
     const message =
-      `Hello TownTaskers Sewa & Solution Pvt. Ltd.,\n\n` +
+      `Hello ${company.companyName},\n\n` +
       `Name: ${form.name}\n` +
       `Phone: ${form.phone}\n` +
       (form.email ? `Email: ${form.email}\n` : '') +
@@ -49,7 +50,7 @@ export function ContactForm() {
       `\nMessage: ${form.message}`;
 
     const encoded = encodeURIComponent(message);
-    const url = `https://wa.me/?text=${encoded}`;
+    const url = `https://wa.me/${company.whatsappNumber}?text=${encoded}`;
     window.open(url, '_blank', 'noopener,noreferrer');
     setSubmitted(true);
   };

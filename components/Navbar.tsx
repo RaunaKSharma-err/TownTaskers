@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Menu,
   X,
@@ -23,9 +23,10 @@ import {
   Users,
   Package,
   GraduationCap,
-} from 'lucide-react';
-import { services } from '@/lib/services';
-import { getWhatsAppUrl } from '@/lib/whatsapp';
+} from "lucide-react";
+import { services } from "@/lib/services";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+import Image from "next/image";
 
 const serviceIcons: Record<string, typeof Home> = {
   Home,
@@ -40,7 +41,7 @@ const serviceIcons: Record<string, typeof Home> = {
   Utensils,
 };
 
-const navLinkBase = 'text-sm font-medium transition-colors hover:text-primary';
+const navLinkBase = "text-sm font-medium transition-colors hover:text-primary";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,8 +57,8 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -70,24 +71,36 @@ export function Navbar() {
 
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
   const isActive = (path: string) => {
-    if (path === '/') return pathname === '/';
+    if (path === "/") return pathname === "/";
     return pathname.startsWith(path);
   };
 
   const moreLinks = [
-    { name: 'Housekeeping & Maid Services', path: '/housekeeping', icon: Users },
-    { name: 'Cleaning Materials & Supplies', path: '/cleaning-supplies', icon: Package },
-    { name: 'Professional Cleaning Training', path: '/cleaning-training', icon: GraduationCap },
+    {
+      name: "Housekeeping & Maid Services",
+      path: "/housekeeping",
+      icon: Users,
+    },
+    {
+      name: "Cleaning Materials & Supplies",
+      path: "/cleaning-supplies",
+      icon: Package,
+    },
+    {
+      name: "Professional Cleaning Training",
+      path: "/cleaning-training",
+      icon: GraduationCap,
+    },
   ];
 
   return (
@@ -95,17 +108,29 @@ export function Navbar() {
       <header
         className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
           scrolled
-            ? 'border-border bg-white/90 shadow-soft backdrop-blur-md'
-            : 'border-transparent bg-white'
+            ? "border-border bg-white/90 shadow-soft backdrop-blur-md"
+            : "border-transparent bg-white"
         }`}
       >
         <nav className="container-mx container-px flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2" aria-label="Town Taskers Home">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white md:h-10 md:w-10">
-              <Droplets className="h-5 w-5 md:h-6 md:w-6" />
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            aria-label="Town Taskers Home"
+          >
+            <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white md:h-10 md:w-10">
+              <Image
+                src="https://res.cloudinary.com/cco6q5ha/image/upload/v1791176202/tt.png"
+                width={32}
+                height={32}
+                className="h-14 w-14 md:h-8 md:w-8 object-cover"
+                alt="Towntaskers logo"
+              />
             </span>
-            <span className={`font-heading font-bold leading-tight ${scrolled ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
+            <span
+              className={`font-heading font-bold leading-tight ${scrolled ? "text-base md:text-lg" : "text-lg md:text-xl"}`}
+            >
               Town<span className="text-primary">Taskers</span>
             </span>
           </Link>
@@ -114,7 +139,7 @@ export function Navbar() {
           <div className="hidden items-center gap-1 lg:flex">
             <Link
               href="/"
-              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive('/') ? 'text-primary' : 'text-foreground'}`}
+              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive("/") ? "text-primary" : "text-foreground"}`}
             >
               Home
             </Link>
@@ -127,13 +152,15 @@ export function Navbar() {
             >
               <button
                 className={`flex items-center gap-1 rounded-md px-3 py-2 ${navLinkBase} ${
-                  isActive('/services') ? 'text-primary' : 'text-foreground'
+                  isActive("/services") ? "text-primary" : "text-foreground"
                 }`}
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
               >
                 Services
-                <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {servicesOpen && (
                 <div className="absolute left-0 top-full pt-2">
@@ -172,13 +199,19 @@ export function Navbar() {
             >
               <button
                 className={`flex items-center gap-1 rounded-md px-3 py-2 ${navLinkBase} ${
-                  isActive('/housekeeping') || isActive('/cleaning-supplies') || isActive('/cleaning-training') ? 'text-primary' : 'text-foreground'
+                  isActive("/housekeeping") ||
+                  isActive("/cleaning-supplies") ||
+                  isActive("/cleaning-training")
+                    ? "text-primary"
+                    : "text-foreground"
                 }`}
                 aria-expanded={moreOpen}
                 aria-haspopup="true"
               >
                 More
-                <ChevronDown className={`h-4 w-4 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${moreOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {moreOpen && (
                 <div className="absolute left-0 top-full pt-2">
@@ -203,18 +236,10 @@ export function Navbar() {
 
             <Link
               href="/pricing"
-              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive('/pricing') ? 'text-primary' : 'text-foreground'}`}
+              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive("/pricing") ? "text-primary" : "text-foreground"}`}
             >
               Pricing
             </Link>
-
-            {/* DIY Cleaning */}
-            <div
-              className="relative"
-              onMouseEnter={() => setMoreOpen(true)}
-              onMouseLeave={() => setMoreOpen(false)}
-            >
-            </div>
 
             {/* Our Work Dropdown */}
             <div
@@ -224,13 +249,15 @@ export function Navbar() {
             >
               <button
                 className={`flex items-center gap-1 rounded-md px-3 py-2 ${navLinkBase} ${
-                  isActive('/our-work') ? 'text-primary' : 'text-foreground'
+                  isActive("/our-work") ? "text-primary" : "text-foreground"
                 }`}
                 aria-expanded={ourWorkOpen}
                 aria-haspopup="true"
               >
                 Our Work
-                <ChevronDown className={`h-4 w-4 transition-transform ${ourWorkOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${ourWorkOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {ourWorkOpen && (
                 <div className="absolute left-0 top-full pt-2">
@@ -263,19 +290,19 @@ export function Navbar() {
 
             <Link
               href="/clients"
-              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive('/clients') ? 'text-primary' : 'text-foreground'}`}
+              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive("/clients") ? "text-primary" : "text-foreground"}`}
             >
               Clients
             </Link>
             <Link
               href="/about"
-              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive('/about') ? 'text-primary' : 'text-foreground'}`}
+              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive("/about") ? "text-primary" : "text-foreground"}`}
             >
               About Us
             </Link>
             <Link
               href="/contact"
-              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive('/contact') ? 'text-primary' : 'text-foreground'}`}
+              className={`rounded-md px-3 py-2 ${navLinkBase} ${isActive("/contact") ? "text-primary" : "text-foreground"}`}
             >
               Contact
             </Link>
@@ -311,9 +338,19 @@ export function Navbar() {
           />
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-sm overflow-y-auto bg-white shadow-xl">
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
+              <Link
+                href="/"
+                className="flex items-center gap-2"
+                onClick={() => setMobileOpen(false)}
+              >
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
-                  <Droplets className="h-5 w-5" />
+                  <Image
+                    src="https://res.cloudinary.com/cco6q5ha/image/upload/v1791176202/tt.png"
+                    width={32}
+                    height={32}
+                    className="h-10 w-10 md:h-8 md:w-8 object-cover"
+                    alt="Towntaskers logo"
+                  />
                 </span>
                 <span className="font-heading font-bold text-lg">
                   Town<span className="text-primary">Taskers</span>
@@ -329,7 +366,10 @@ export function Navbar() {
             </div>
 
             <div className="flex flex-col px-3 py-4">
-              <Link href="/" className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive('/') ? 'bg-primary-50 text-primary' : 'text-foreground'}`}>
+              <Link
+                href="/"
+                className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive("/") ? "bg-primary-50 text-primary" : "text-foreground"}`}
+              >
                 Home
               </Link>
 
@@ -340,11 +380,16 @@ export function Navbar() {
                 aria-expanded={mobileServicesOpen}
               >
                 Services
-                <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {mobileServicesOpen && (
                 <div className="ml-4 flex flex-col border-l border-border pl-3 max-h-[40vh] overflow-y-auto">
-                  <Link href="/services" className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary">
+                  <Link
+                    href="/services"
+                    className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary"
+                  >
                     All Services
                   </Link>
                   {services.map((service) => (
@@ -366,7 +411,9 @@ export function Navbar() {
                 aria-expanded={mobileMoreOpen}
               >
                 More Services
-                <ChevronDown className={`h-4 w-4 transition-transform ${mobileMoreOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${mobileMoreOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {mobileMoreOpen && (
                 <div className="ml-4 flex flex-col border-l border-border pl-3">
@@ -382,7 +429,10 @@ export function Navbar() {
                 </div>
               )}
 
-              <Link href="/pricing" className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive('/pricing') ? 'bg-primary-50 text-primary' : 'text-foreground'}`}>
+              <Link
+                href="/pricing"
+                className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive("/pricing") ? "bg-primary-50 text-primary" : "text-foreground"}`}
+              >
                 Pricing
               </Link>
 
@@ -393,16 +443,24 @@ export function Navbar() {
                 aria-expanded={mobileDiyOpen}
               >
                 DIY Cleaning
-                <ChevronDown className={`h-4 w-4 transition-transform ${mobileDiyOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${mobileDiyOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {mobileDiyOpen && (
                 <div className="ml-4 flex flex-col border-l border-border pl-3">
-                  <Link href="/diy-cleaning" className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary">
+                  <Link
+                    href="/diy-cleaning"
+                    className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary"
+                  >
                     DIY Cleaning Hub
                   </Link>
-                  <Link href="/diy-cleaning/cleaning-code-generator" className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary">
+                  {/* <Link
+                    href="/diy-cleaning/cleaning-code-generator"
+                    className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary"
+                  >
                     Cleaning Code Generator
-                  </Link>
+                  </Link> */}
                 </div>
               )}
 
@@ -413,29 +471,49 @@ export function Navbar() {
                 aria-expanded={mobileOurWorkOpen}
               >
                 Our Work
-                <ChevronDown className={`h-4 w-4 transition-transform ${mobileOurWorkOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${mobileOurWorkOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {mobileOurWorkOpen && (
                 <div className="ml-4 flex flex-col border-l border-border pl-3">
-                  <Link href="/our-work" className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary">
+                  <Link
+                    href="/our-work"
+                    className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary"
+                  >
                     Overview
                   </Link>
-                  <Link href="/our-work/before-after" className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary">
+                  <Link
+                    href="/our-work/before-after"
+                    className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary"
+                  >
                     Before &amp; After
                   </Link>
-                  <Link href="/our-work/projects" className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary">
+                  <Link
+                    href="/our-work/projects"
+                    className="rounded-lg px-4 py-2.5 text-sm text-muted-foreground hover:text-primary"
+                  >
                     Projects
                   </Link>
                 </div>
               )}
 
-              <Link href="/clients" className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive('/clients') ? 'bg-primary-50 text-primary' : 'text-foreground'}`}>
+              <Link
+                href="/clients"
+                className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive("/clients") ? "bg-primary-50 text-primary" : "text-foreground"}`}
+              >
                 Clients
               </Link>
-              <Link href="/about" className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive('/about') ? 'bg-primary-50 text-primary' : 'text-foreground'}`}>
+              <Link
+                href="/about"
+                className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive("/about") ? "bg-primary-50 text-primary" : "text-foreground"}`}
+              >
                 About Us
               </Link>
-              <Link href="/contact" className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive('/contact') ? 'bg-primary-50 text-primary' : 'text-foreground'}`}>
+              <Link
+                href="/contact"
+                className={`rounded-lg px-4 py-3 text-sm font-medium ${isActive("/contact") ? "bg-primary-50 text-primary" : "text-foreground"}`}
+              >
                 Contact
               </Link>
 
