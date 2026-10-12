@@ -102,6 +102,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3362872109187311"
+     crossorigin="anonymous"></script>
       </head>
       <body className="font-sans">
         <SkipLink />
